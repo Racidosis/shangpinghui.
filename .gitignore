@@ -1,0 +1,15 @@
+需要忽略的文件.txt
+#
+.DS_Store
+
+
+#项目依赖的包
+node_modules
+
+#项目打包之后的文件
+
+dist/
+
+#报错的日志
+npm-debug.log
+yarn-debug.log
