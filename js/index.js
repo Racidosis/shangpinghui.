@@ -293,18 +293,40 @@ ${goodData.goodsDetail.recommend}
   function renderPrice() {
     $('#priceValue')[0].innerHTML=pricedata.base//粉色框的价格
     $('#masterProductPrice')[0].innerHTML='&yen;'+pricedata.base//选择搭配价格
-    
-    
     // 复选框中没有一个框被选中则，使用下面方法修改属性值
 
+  //6,选择商品的其他信息，动态修改价格
+  //6.1找到4个复选框
+      // var checks = $('input[type=checkbox]');
+  // console.log(checks);
+  // 每次点击复选框确认其余的复选框是否为选中状态
+  function acquire() {
+    var arr = [];
+    for (var i = 0; i < 4; i++){
+      var flag = $($('input:checkbox')[i]).prop('checked');
+      if (flag) {
+        var num = ($('input:checkbox')[i].nextElementSibling.innerHTML);
+        arr.push(num);
+      }
+    }
+    var sum = 0;
+    arr.forEach(function(item, index) {
+      sum += item-0;
+    })
+    var char = $('#masterProductPrice').text().substr(1,);
+    total = sum + parseFloat(char);
+    console.log(total);
+    $('#totalPrice')[0].innerHTML =bool_?total:('&yen;'+pricedata.base)//选择搭配价格
+  }
+  $('input[type=checkbox]').click(acquire)
+    // console.log(acquire());
    //所有复选框的选中状态
     var checks_ = Array.from(document.querySelectorAll('input[type=checkbox]'));
   var bool_=checks_.some(function(el) {
     return el.checked;//some只要有一项为true，则为true
     //只有全为false才为false
   })//bool_为true代表至少有一项的复选框为选中状态
-    console.log( $('#totalPrice')[0].innerHTML=1);
-    $('#totalPrice')[0].innerHTML =bool_?100:('&yen;'+pricedata.base)//选择搭配价格
+    $('#totalPrice')[0].innerHTML =  $('#masterProductPrice').text().substr(1,);
   }
   // 动态计算商品的价格
   ; (function() {
@@ -312,14 +334,14 @@ ${goodData.goodsDetail.recommend}
     $('#plusBtn').click(function() {
       pricedata.num++;//var 声明的get 、set
       $('#shopcartNum')[0].value = pricedata.num;
-      renderPrice()
+      renderPrice();
     })
     //点击减号按钮
     $('#minusBtn').click(function() {
       pricedata.num--;//var 声明的get 、set
       if (pricedata.num < 1) pricedata.num = 1;
       $('#shopcartNum')[0].value = pricedata.num;
-      renderPrice()
+      renderPrice();
     })
   })();
   //给加减按钮框的input添加失去焦点属性
@@ -329,21 +351,5 @@ ${goodData.goodsDetail.recommend}
     }
     pricedata.num = this.value;//失去焦点后将失去焦点前购物车的数量赋值给pricedata.num 数量属性
     renderPrice()
-  })
-
-  //6,选择商品的其他信息，动态修改价格
-  //6.1找到4个复选框
-      // var checks = $('input[type=checkbox]');
-  // console.log(checks);
-  // 每次点击复选框确认其余的复选框是否为选中状态
-  $('input[type=checkbox]').click(function() {
-//  console.dir(  Boolean( $('input:checkbox').attr('checked')));
-    // for (var i = 0; i < 4; i++){
-    //   var flag = $($('input:checkbox')[i]).prop('checked') && true;
-    //   console.log(flag);
-      
-    // }
-
-
   })
 })
