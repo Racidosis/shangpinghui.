@@ -132,9 +132,7 @@ ${goodData.goodsDetail.recommend}
       div.className = 'selected-tag';
       $('#selectedbox').append(div);
       span.onclick = function() {
-       
         span.parentElement.remove();
-       
       }
     }
   })
