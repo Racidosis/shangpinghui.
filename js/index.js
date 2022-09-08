@@ -225,6 +225,7 @@ ${goodData.goodsDetail.recommend}
           //this.parentElement.dataset.index对应父级的索引号
           selectedArr[this.parentElement.dataset.index] = $(this);
           //每次添加前把值清空
+          console.dir(this);
           selectedBox.innerHTML = '';
           // selectedArr选项卡中的选中商品的参数
           selectedArr.forEach(function(dditem, ddindex) {
@@ -328,6 +329,7 @@ ${goodData.goodsDetail.recommend}
   })//bool_为true代表至少有一项的复选框为选中状态
     $('#totalPrice')[0].innerHTML =  $('#masterProductPrice').text().substr(1,);
   }
+  
   // 动态计算商品的价格
   ; (function() {
     //点击加号按钮
